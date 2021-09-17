@@ -187,7 +187,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2021-09-17 16:51:49 / Modified: 19:06:00" itemprop="dateCreated datePublished" datetime="2021-09-17T16:51:49+08:00">2021-09-17</time>
+              <time title="Created: 2021-09-17 16:51:49 / Modified: 19:11:33" itemprop="dateCreated datePublished" datetime="2021-09-17T16:51:49+08:00">2021-09-17</time>
             </span>
 
           
@@ -222,6 +222,26 @@
 <p>虽然最后没能AK，但好像这几个数字还不错。</p>
 <p>我与我周旋久，宁作我。</p>
 <h3 id="Reverse"><a href="#Reverse" class="headerlink" title="Reverse"></a>Reverse</h3><h4 id="Among-Them"><a href="#Among-Them" class="headerlink" title="Among Them"></a>Among Them</h4><p>签到题的水平，不知道为什么给两星的难度。直接丢进IDA，main函数F5。</p>
+<img src="/2021/09/17/IntelChina/image-20210914171210184.png" class="">
+
+<p>这鬼东西双击进去就看到了flag</p>
+<img src="/2021/09/17/IntelChina/image-20210914171246670.png" class="">
+
+<p>flag为：HTB{4r3_u_r34lly_th3_us3r_!@#$%^&amp;*()??}</p>
+<p>值得注意一下的是，这道题用ptrace增加了反调试，虽然我不知道一道不用调试的题目为什么要这么严谨的加反调试，但是讲一下这里要怎么绕过反调试。</p>
+<img src="/2021/09/17/IntelChina/image-20210914171519107.png" class="">
+
+<p>直接把exit(1)的汇编代码部分nop掉。</p>
+<img src="/2021/09/17/IntelChina/image-20210914171732329.png" class="">
+
+<img src="/2021/09/17/IntelChina/image-20210914171807071.png" class="">
+
+<img src="/2021/09/17/IntelChina/image-20210914171831706.png" class="">
+
+<p>把Intruction部分删掉，填nop</p>
+<img src="/2021/09/17/IntelChina/image-20210914171930882.png" class="">
+
+<p>你再把main函数F5回去，就可以看到没有这个退出的指令了，可以动态调试了。</p>
 <p>
       
     </div>
