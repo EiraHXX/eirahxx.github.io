@@ -20,20 +20,28 @@
     var CONFIG = {"hostname":"eirahxx.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"flat"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="2021 - EMNLP - A Strong Baseline for Query Efficient Attacks in a Black Box Setting - code Black Box(其实用了score，不算严格黑盒); Query Efficient; untarget attack;">
+  <meta name="description" content="2021 - EMNLP - On the Transferability of Adversarial Attacks against Neural Text Classifier transferability; no query">
 <meta property="og:type" content="article">
-<meta property="og:title" content="A Strong Baseline for Query Efficient Attacks in a Black Box Setting">
-<meta property="og:url" content="http://eirahxx.github.io/2021/10/28/Paper-A%20Strong%20Baseline%20for%20Query%20Efficient%20Attacks%20in%20a%20Black%20Box%20Setting/index.html">
+<meta property="og:title" content="Paper-HAWR">
+<meta property="og:url" content="http://eirahxx.github.io/2021/12/13/Paper-HAWR/index.html">
 <meta property="og:site_name" content="eira&#39;s blog">
-<meta property="og:description" content="2021 - EMNLP - A Strong Baseline for Query Efficient Attacks in a Black Box Setting - code Black Box(其实用了score，不算严格黑盒); Query Efficient; untarget attack;">
+<meta property="og:description" content="2021 - EMNLP - On the Transferability of Adversarial Attacks against Neural Text Classifier transferability; no query">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-10-28T01:44:10.000Z">
-<meta property="article:modified_time" content="2021-10-30T11:44:46.878Z">
+<meta property="og:image" content="http://eirahxx.github.io/2021/12/13/Paper-HAWR/picture1.png">
+<meta property="og:image" content="http://eirahxx.github.io/2021/12/13/Paper-HAWR/picture2.png">
+<meta property="og:image" content="http://eirahxx.github.io/2021/12/13/Paper-HAWR/picture3.png">
+<meta property="og:image" content="http://eirahxx.github.io/2021/12/13/Paper-HAWR/picture4.png">
+<meta property="og:image" content="http://eirahxx.github.io/2021/12/13/Paper-HAWR/picture5.png">
+<meta property="og:image" content="http://eirahxx.github.io/2021/12/13/Paper-HAWR/picture6.png">
+<meta property="og:image" content="http://eirahxx.github.io/2021/12/13/Paper-HAWR/picture7.png">
+<meta property="article:published_time" content="2021-12-13T09:13:32.000Z">
+<meta property="article:modified_time" content="2021-12-13T09:43:17.058Z">
 <meta property="article:author" content="Eira">
 <meta property="article:tag" content="TAAD">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://eirahxx.github.io/2021/12/13/Paper-HAWR/picture1.png">
 
-<link rel="canonical" href="http://eirahxx.github.io/2021/10/28/Paper-A%20Strong%20Baseline%20for%20Query%20Efficient%20Attacks%20in%20a%20Black%20Box%20Setting/">
+<link rel="canonical" href="http://eirahxx.github.io/2021/12/13/Paper-HAWR/">
 
 
 <script id="page-configurations">
@@ -46,7 +54,7 @@
   };
 </script>
 
-  <title>A Strong Baseline for Query Efficient Attacks in a Black Box Setting | eira's blog</title>
+  <title>Paper-HAWR | eira's blog</title>
   
 
 
@@ -166,7 +174,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://eirahxx.github.io/2021/10/28/Paper-A%20Strong%20Baseline%20for%20Query%20Efficient%20Attacks%20in%20a%20Black%20Box%20Setting/">
+    <link itemprop="mainEntityOfPage" href="http://eirahxx.github.io/2021/12/13/Paper-HAWR/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -179,7 +187,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          A Strong Baseline for Query Efficient Attacks in a Black Box Setting
+          Paper-HAWR
         </h1>
 
         <div class="post-meta">
@@ -188,16 +196,10 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
+              
 
-              <time title="Created: 2021-10-28 09:44:10" itemprop="dateCreated datePublished" datetime="2021-10-28T09:44:10+08:00">2021-10-28</time>
+              <time title="Created: 2021-12-13 17:13:32 / Modified: 17:43:17" itemprop="dateCreated datePublished" datetime="2021-12-13T17:13:32+08:00">2021-12-13</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-10-30 19:44:46" itemprop="dateModified" datetime="2021-10-30T19:44:46+08:00">2021-10-30</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -217,8 +219,8 @@
       </span>
       <span class="post-meta-item-text">Valine: </span>
     
-    <a title="valine" href="/2021/10/28/Paper-A%20Strong%20Baseline%20for%20Query%20Efficient%20Attacks%20in%20a%20Black%20Box%20Setting/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/10/28/Paper-A%20Strong%20Baseline%20for%20Query%20Efficient%20Attacks%20in%20a%20Black%20Box%20Setting/" itemprop="commentCount"></span>
+    <a title="valine" href="/2021/12/13/Paper-HAWR/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/12/13/Paper-HAWR/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -233,19 +235,57 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>2021 - EMNLP - <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2109.04775">A Strong Baseline for Query Efficient Attacks in a Black Box Setting</a> - <a target="_blank" rel="noopener" href="https://github.com/rishabhmaheshwary/query-attack">code</a></p>
-<p>Black Box(其实用了score，不算严格黑盒); Query Efficient; untarget attack;</p>
+        <p>2021 - EMNLP - <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2011.08558.pdf"><strong>On the Transferability of Adversarial Attacks against Neural Text Classifier</strong></a></p>
+<p>transferability; no query</p>
 <span id="more"></span>
 
-<p>Tasks: text classification and entailment</p>
-<p>Model: Bert, WordCNN, WordLSTM</p>
-<p>Dataset: IMDB, Yelp, MNLI</p>
-<p>这篇文章的名字取得有一点嚣张，a strong baseline，搞得好像后面的文章不引用就不行一样。</p>
-<p>主要方法是引入了Attention机制和LSH对词的重要度进行了排序。</p>
-<p>现在从写作的角度来看，主要是想知道这篇文章为什么可以发顶会。</p>
-<p>第一点是，写的深入，将所想的东西都表达出来了。比如把现有的黑盒攻击分为两个思考方向，一个是搜索空间，一个是搜索方法，再比如，删掉一个词进行排序的方法为什么不好，其实这些都是我们在实验过程中有思考的问题，但是拿出来写文章的时候就完全不知道写什么，现在看来，之前的文章就写的很浅。</p>
-<p>第二点是，文章的卖点，这篇文章引入了排序机制是一个卖点，攻击成功率和查询次数两个指标也是一个卖点。现在的问题就是如何把自己简单的方法描述的很高级，然后阐述这么做为什么效果会好，说明我们的方法不是偶然发现的一个方法，而是经过思考和对比的。</p>
-<p>真的觉得自己做的东西效果不比别人差，主要还是writing的功力不够，继续polish吧。</p>
+<p>这篇文章主要是研究了文本模型之间对抗性的迁移性，并利用迁移性设计了一种新的攻击方案HAWR，在不需要查询的情况下可以达到与sota comparable的攻击成功率。</p>
+<img src="/2021/12/13/Paper-HAWR/picture1.png" class="">
+
+<p>这张图是这篇文章整个的研究过程，包括abcd四个部分：</p>
+<p>a. 给定一个神经模型代表池，计算任意一对模型之间的对抗性迁移率。</p>
+<p>b. 使用遗传算法找到一个具有最少模型数量的最优的集合，通过攻击这个集生成的对抗样本可以被迁移到其他模型上。</p>
+<p>c. 通过攻击这个集合模型，生成高迁移性的对抗样本。</p>
+<p>d. 从集合生成的对抗样本中提取出对抗性词语替换规则，这些规则可以用来发现数据偏差，在黑盒设置下诊断模型。</p>
+<p>（我感觉这样的规则就像是图像对抗攻击中的通用补丁。）</p>
+<h3 id="模型之间对抗性的迁移性的研究"><a href="#模型之间对抗性的迁移性的研究" class="headerlink" title="模型之间对抗性的迁移性的研究"></a>模型之间对抗性的迁移性的研究</h3><img src="/2021/12/13/Paper-HAWR/picture2.png" class="">
+
+<p>表2中是在PWWS和GA攻击时，AG和MR数据集上的相对对抗性迁移率。这些数据是在所有可能的模型对下的平均值，值越小表示与基本迁移率越接近。从这些数据可以看出，分词方案对对抗性迁移率的影响最大，然后是网络架构、嵌入类型和模型性能。</p>
+<img src="/2021/12/13/Paper-HAWR/picture3.png" class="">
+
+<p>表3是不同网络架构之间的对抗性迁移率。每个单元格其实是两种类型模型之间所有可能的组合的迁移性的平均值。</p>
+<p>从表中的数据可以发现，其实对抗迁移性是不对称的，对角线上是模型内部的对抗迁移性，模型内部的对抗迁移率始终是高于模型间的。而且使用Bert产生的对抗样本的迁移性比其他模型要差，Bert本身对于使用其他模型产生的对抗样本表现出更强的鲁棒性。这可能是因为Bert使用了大规模数据进行预训练，而且采用了不同的分词的方案。而且Bert更倾向于讲注意力分散在输入文本更多的单词上面，通过仅仅扰动几个单词来改变预测结果更困难。其他的模型在进行预测的时候往往关注某些关键词，这样更容易受到黑盒迁移攻击。</p>
+<img src="/2021/12/13/Paper-HAWR/picture4.png" class="">
+
+<p>表4中是不同的分词方案和嵌入类型对对抗迁移性的影响。这里不是相对数据，就是实际实验得出的对抗迁移率。所以越高越好，越低证明越鲁棒。预训练的模型显示，无论其词嵌入或其他参数，或两者都使用大规模文本数据进行预训练，对黑盒迁移攻击都更健壮。作者说基于字符的模型要更鲁棒。但是这里有一个问题是，这里实验使用的攻击方案PWWS就是一种单词替换的攻击。所以这里说基于字符的模型更鲁棒其实不是很准确。</p>
+<p>模型间对抗性的迁移性的实验总结：</p>
+<ol>
+<li>无论使用哪种攻击算法或数据集，分词方案对对抗可转让性的影响最大。</li>
+<li> 对抗性转移是不对称的，模型内对抗样本的转移率始终高于模型间对抗样本的转移率。</li>
+<li>预训练的神经模型显示出对黑盒迁移攻击更强的鲁棒性。</li>
+<li>通过攻击Bert生成的对抗样本的迁移性比其他模型更差，但是Bert同样体现了对对抗迁移攻击更强的鲁棒性。</li>
+<li>相比于以单词为输入的模型，基于字符的模型对迁移攻击具有更好的鲁棒性。这个发现我认为存疑，需要进一步实验才能得出结论。毕竟论文中使用的攻击方案就是做单词替换的攻击，还有一些字符级别的攻击没有进行实验。</li>
+<li>在BERT族模型中，预训练数据越多的模型对黑盒迁移攻击的鲁棒性越好，而对抗样本的迁移性，预训练数据越多的模型略好。</li>
+</ol>
+<p>后续研究的两个问题就是：</p>
+<ol>
+<li> 如何从模型池中选择几个模型来创建一个集合，这个集合生成的对抗样本 可以攻击所有其他模型?</li>
+<li>集合产生的对抗样本是否可以迁移到到其他 没有在模型池中列出 的模型上?</li>
+</ol>
+<h3 id="作者的攻击方案"><a href="#作者的攻击方案" class="headerlink" title="作者的攻击方案"></a>作者的攻击方案</h3><h4 id="集成模型"><a href="#集成模型" class="headerlink" title="集成模型"></a>集成模型</h4><p>通过平均所有成员模型的输出平均值作为集成模型最终的输出。</p>
+<p>考虑到在集合形成的时候，可能会受到前面所说的多种因素的影响，作者提出了一种基于种群的遗传算法来寻找最优集成。适应度函数：</p>
+<img src="/2021/12/13/Paper-HAWR/picture5.png" class="">
+
+<h4 id="提取单词替换规则HAWR"><a href="#提取单词替换规则HAWR" class="headerlink" title="提取单词替换规则HAWR"></a>提取单词替换规则HAWR</h4><p>作者假设可以从集成攻击提取一些词替换规则，将提取的规则用于扰动输入文本，生成对抗样本也可以很好地迁移到不同的模型上。使用集成模型来发现这样的词替换规则，这些规则将被用来生成模型无关的可迁移的对抗样本。每个规则都有一个对应的显著性h，指定了规则的优先级。显著性的值越高表示优先级越高。显著性计算方式：</p>
+<img src="/2021/12/13/Paper-HAWR/picture6.png" class="">
+
+<p>PMI是点互信息，用来衡量一个单词和标签之间的相关性。</p>
+<img src="/2021/12/13/Paper-HAWR/picture7.png" class="">
+
+<p>实验效果还是不错的，与TextFooler达到了comparable的攻击成功率。但是TextFooler的攻击成功率只有60~70%吗？我咋感觉跟我看的不是一个TextFooler呢，看来有必要去复现一下。</p>
+<p>这篇文章的作者没有说他提取到的规则的规模是多大。包括ｐ是怎么计算的也没有说。目前代码也没有开源，虽然文章里面说是即将开源。</p>
+<p>总的来说，攻击方法就是集成模型和提取规则的一个结合。</p>
+<p>感觉最近看到的论文里面用集成模型的越来越多。</p>
 
     </div>
 
@@ -261,7 +301,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>Post link: </strong>
-    <a href="http://eirahxx.github.io/2021/10/28/Paper-A%20Strong%20Baseline%20for%20Query%20Efficient%20Attacks%20in%20a%20Black%20Box%20Setting/" title="A Strong Baseline for Query Efficient Attacks in a Black Box Setting">http://eirahxx.github.io/2021/10/28/Paper-A Strong Baseline for Query Efficient Attacks in a Black Box Setting/</a>
+    <a href="http://eirahxx.github.io/2021/12/13/Paper-HAWR/" title="Paper-HAWR">http://eirahxx.github.io/2021/12/13/Paper-HAWR/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
@@ -281,13 +321,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/09/17/IntelChina/" rel="prev" title="IntelChina">
-      <i class="fa fa-chevron-left"></i> IntelChina
+    <a href="/2021/12/02/Paper-RIFT/" rel="prev" title="How Should Pre-Trained Language Models Be Fine-Tuned Towards Adversarial Robustness?">
+      <i class="fa fa-chevron-left"></i> How Should Pre-Trained Language Models Be Fine-Tuned Towards Adversarial Robustness?
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/10/29/Paper-TextFooler/" rel="next" title="TextFooler &#58 Is BERT Really Robust? A Strong Baseline for Natural Language Attack on Text Classification and Entailment">
-      TextFooler &#58 Is BERT Really Robust? A Strong Baseline for Natural Language Attack on Text Classification and Entailment <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -347,6 +384,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E4%B9%8B%E9%97%B4%E5%AF%B9%E6%8A%97%E6%80%A7%E7%9A%84%E8%BF%81%E7%A7%BB%E6%80%A7%E7%9A%84%E7%A0%94%E7%A9%B6"><span class="nav-text">模型之间对抗性的迁移性的研究</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%9C%E8%80%85%E7%9A%84%E6%94%BB%E5%87%BB%E6%96%B9%E6%A1%88"><span class="nav-text">作者的攻击方案</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%9B%86%E6%88%90%E6%A8%A1%E5%9E%8B"><span class="nav-text">集成模型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8F%90%E5%8F%96%E5%8D%95%E8%AF%8D%E6%9B%BF%E6%8D%A2%E8%A7%84%E5%88%99HAWR"><span class="nav-text">提取单词替换规则HAWR</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
