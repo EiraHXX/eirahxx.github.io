@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"eirahxx.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"flat"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="链表">
+<meta property="og:type" content="article">
+<meta property="og:title" content="算法记录3——链表">
+<meta property="og:url" content="http://eirahxx.github.io/2021/12/22/algorithm3/index.html">
+<meta property="og:site_name" content="eira&#39;s blog">
+<meta property="og:description" content="链表">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-12-22T08:19:47.000Z">
+<meta property="article:modified_time" content="2021-12-22T08:37:27.132Z">
+<meta property="article:author" content="Eira">
+<meta property="article:tag" content="链表">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://eirahxx.github.io/2021/12/22/algorithm3/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>算法记录3——链表 | eira's blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">eira's blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">9</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">3</span></a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">5</span></a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://eirahxx.github.io/2021/12/22/algorithm3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Eira">
+      <meta itemprop="description" content="Yet here I stand">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="eira's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          算法记录3——链表
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-12-22 16:19:47 / Modified: 16:37:27" itemprop="dateCreated datePublished" datetime="2021-12-22T16:19:47+08:00">2021-12-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2021/12/22/algorithm3/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/12/22/algorithm3/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>链表</p>
+<span id="more"></span>
+
+<h4 id="206-反转链表"><a href="#206-反转链表" class="headerlink" title="206. 反转链表"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/reverse-linked-list/">206. 反转链表</a></h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">class Solution:</span><br><span class="line">    def reverseList(self, head: ListNode) -&gt; ListNode:</span><br><span class="line">        cur = head</span><br><span class="line">        pre = None</span><br><span class="line">        while cur != None:</span><br><span class="line">            next = cur.next</span><br><span class="line">            cur.next = pre</span><br><span class="line">            pre = cur</span><br><span class="line">            cur = next</span><br><span class="line">        </span><br><span class="line">        return pre</span><br></pre></td></tr></table></figure>
+
+<h4 id="92-反转链表-II"><a href="#92-反转链表-II" class="headerlink" title="92. 反转链表 II"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/reverse-linked-list-ii/">92. 反转链表 II</a></h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">class Solution:</span><br><span class="line">    def reverseBetween(self, head: ListNode, left: int, right: int) -&gt; ListNode:</span><br><span class="line">        def reverseList(head: ListNode):</span><br><span class="line">            cur = head</span><br><span class="line">            pre = None</span><br><span class="line">            while cur != None:</span><br><span class="line">                next = cur.next</span><br><span class="line">                cur.next = pre</span><br><span class="line">                pre = cur</span><br><span class="line">                cur = next</span><br><span class="line"></span><br><span class="line">        first = ListNode(-1)</span><br><span class="line">        first.next = head</span><br><span class="line">        pre = first</span><br><span class="line">        for _ in range(left-1):</span><br><span class="line">            pre = pre.next</span><br><span class="line">        </span><br><span class="line">        r = pre</span><br><span class="line">        for _ in range(right-left+1):</span><br><span class="line">            r = r.next</span><br><span class="line">        </span><br><span class="line">        l = pre.next</span><br><span class="line">        s = r.next</span><br><span class="line"></span><br><span class="line">        pre.next = None</span><br><span class="line">        r.next = None</span><br><span class="line"></span><br><span class="line">        reverseList(l)</span><br><span class="line"></span><br><span class="line">        pre.next = r</span><br><span class="line">        l.next = s</span><br><span class="line"></span><br><span class="line">        return first.next</span><br></pre></td></tr></table></figure>
+
+<h4 id="83-删除排序链表中的重复元素"><a href="#83-删除排序链表中的重复元素" class="headerlink" title="83. 删除排序链表中的重复元素"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/remove-duplicates-from-sorted-list/">83. 删除排序链表中的重复元素</a></h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">class Solution:</span><br><span class="line">    def deleteDuplicates(self, head: ListNode) -&gt; ListNode:</span><br><span class="line">        cur = head</span><br><span class="line">        if head == None or head.next == None:</span><br><span class="line">            return head</span><br><span class="line">        pre = head</span><br><span class="line">        cur = head.next</span><br><span class="line">        while cur != None:</span><br><span class="line">            if pre.val == cur.val:</span><br><span class="line">                suc = cur.next</span><br><span class="line">                pre.next = suc</span><br><span class="line">                cur = suc</span><br><span class="line">            else:</span><br><span class="line">                pre = cur</span><br><span class="line">                cur = cur.next</span><br><span class="line"></span><br><span class="line">            </span><br><span class="line">        return head</span><br></pre></td></tr></table></figure>
+
+<h4 id="86-分隔链表"><a href="#86-分隔链表" class="headerlink" title="86. 分隔链表"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/partition-list/">86. 分隔链表</a></h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">class Solution:</span><br><span class="line">    def partition(self, head: ListNode, x: int) -&gt; ListNode:</span><br><span class="line">        pre1 = ListNode(-1)</span><br><span class="line">        pre2 = ListNode(-1)</span><br><span class="line">        link1, link2 = pre1, pre2</span><br><span class="line">        while head != None :</span><br><span class="line">            if head.val &lt; x:</span><br><span class="line">                pre1.next = head</span><br><span class="line">                pre1 = pre1.next</span><br><span class="line">            else:</span><br><span class="line">                pre2.next = head</span><br><span class="line">                pre2 = pre2.next</span><br><span class="line">            head = head.next</span><br><span class="line">        pre2.next = None</span><br><span class="line">        pre1.next = link2.next</span><br><span class="line">        </span><br><span class="line">        return link1.next</span><br></pre></td></tr></table></figure>
+
+<h4 id="328-奇偶链表"><a href="#328-奇偶链表" class="headerlink" title="328. 奇偶链表"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/odd-even-linked-list/">328. 奇偶链表</a></h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">class Solution:</span><br><span class="line">    def oddEvenList(self, head: ListNode) -&gt; ListNode:</span><br><span class="line">        if head == None:</span><br><span class="line">            return head</span><br><span class="line">        evenhead = head.next</span><br><span class="line">        even = evenhead</span><br><span class="line">        odd = head</span><br><span class="line">        while even != None and even.next != None:</span><br><span class="line">            odd.next = even.next</span><br><span class="line">            odd = odd.next</span><br><span class="line">            even.next = odd.next</span><br><span class="line">            even = even.next</span><br><span class="line">        odd.next = evenhead</span><br><span class="line"></span><br><span class="line">        return head</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-两数相加"><a href="#2-两数相加" class="headerlink" title="2. 两数相加"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/add-two-numbers/">2. 两数相加</a></h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">class Solution:</span><br><span class="line">    def addTwoNumbers(self, l1: ListNode, l2: ListNode) -&gt; ListNode:</span><br><span class="line">        sumhead = ListNode(None)</span><br><span class="line">        sum = sumhead</span><br><span class="line">        jinwei = 0</span><br><span class="line">        while (l1 or l2):</span><br><span class="line">            num1 = l1.val if l1 else 0</span><br><span class="line">            num2 = l2.val if l2 else 0</span><br><span class="line">            s = (num1 + num2 + jinwei)</span><br><span class="line">            jinwei = s // 10</span><br><span class="line">            sum.next = ListNode(s % 10)</span><br><span class="line">            </span><br><span class="line">            sum = sum.next</span><br><span class="line">            if l1 != None:</span><br><span class="line">                l1 = l1.next</span><br><span class="line">            if l2 != None:</span><br><span class="line">                l2 = l2.next</span><br><span class="line">        if jinwei &gt; 0:</span><br><span class="line">            sum.next = ListNode(1)</span><br><span class="line">        return sumhead.next</span><br></pre></td></tr></table></figure>
+
+<h4 id="445-两数相加-II"><a href="#445-两数相加-II" class="headerlink" title="445. 两数相加 II"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/add-two-numbers-ii/">445. 两数相加 II</a></h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">class Solution:</span><br><span class="line">    def addTwoNumbers(self, l1: ListNode, l2: ListNode) -&gt; ListNode:</span><br><span class="line">        s1, s2 = [],[]</span><br><span class="line">        while l1:</span><br><span class="line">            s1.append(l1.val)</span><br><span class="line">            l1 = l1.next</span><br><span class="line">        while l2:</span><br><span class="line">            s2.append(l2.val)</span><br><span class="line">            l2 = l2.next</span><br><span class="line">        carry = 0</span><br><span class="line">        output = None</span><br><span class="line">        while s1 or s2:</span><br><span class="line">            num1 = 0 if not s1 else s1.pop()</span><br><span class="line">            num2 = 0 if not s2 else s2.pop()</span><br><span class="line">            s = num1 + num2 + carry</span><br><span class="line">            temp = ListNode(s%10)</span><br><span class="line">            carry = s // 10</span><br><span class="line">            temp.next = output</span><br><span class="line">            output = temp</span><br><span class="line">        if carry:</span><br><span class="line">            temp = ListNode(1)</span><br><span class="line">            temp.next = output</span><br><span class="line">            output = temp</span><br><span class="line">        return output</span><br></pre></td></tr></table></figure>
+
+<h4 id="203-移除链表元素"><a href="#203-移除链表元素" class="headerlink" title="203. 移除链表元素"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/remove-linked-list-elements/">203. 移除链表元素</a></h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">class Solution:</span><br><span class="line">    def removeElements(self, head: ListNode, val: int) -&gt; ListNode:</span><br><span class="line">        h = ListNode(-1)</span><br><span class="line">        h.next = head</span><br><span class="line">        cur = h</span><br><span class="line">        while cur.next != None:</span><br><span class="line">            if cur.next.val == val:</span><br><span class="line">                suc = cur.next</span><br><span class="line">                cur.next = suc.next</span><br><span class="line">            else:</span><br><span class="line">                cur = cur.next</span><br><span class="line">        </span><br><span class="line">        return h.next</span><br></pre></td></tr></table></figure>
+
+<h4 id="82-删除排序链表中的重复元素-II"><a href="#82-删除排序链表中的重复元素-II" class="headerlink" title="82. 删除排序链表中的重复元素 II"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/remove-duplicates-from-sorted-list-ii/">82. 删除排序链表中的重复元素 II</a></h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">class Solution:</span><br><span class="line">    def deleteDuplicates(self, head: ListNode) -&gt; ListNode:</span><br><span class="line">        dummy = ListNode(-1)</span><br><span class="line">        dummy.next = head</span><br><span class="line">        cur = dummy</span><br><span class="line">        while cur.next and cur.next.next:</span><br><span class="line">            if cur.next.val == cur.next.next.val:</span><br><span class="line">                x = cur.next.val</span><br><span class="line">                while cur.next and cur.next.val == x:</span><br><span class="line">                    cur.next = cur.next.next</span><br><span class="line">            else:</span><br><span class="line">                cur = cur.next</span><br><span class="line">        return dummy.next</span><br></pre></td></tr></table></figure>
+
+<h4 id="21-合并两个有序链表"><a href="#21-合并两个有序链表" class="headerlink" title="21. 合并两个有序链表"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/merge-two-sorted-lists/">21. 合并两个有序链表</a></h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">class Solution:</span><br><span class="line">    def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -&gt; Optional[ListNode]:</span><br><span class="line">        dummy = ListNode(-1)</span><br><span class="line">        list3 = dummy</span><br><span class="line">        while list1 and list2:</span><br><span class="line">            if list1.val &lt;= list2.val:</span><br><span class="line">                list3.next = list1</span><br><span class="line">                list1 = list1.next</span><br><span class="line">            else:</span><br><span class="line">                list3.next = list2</span><br><span class="line">                list2 = list2.next</span><br><span class="line">            list3 = list3.next</span><br><span class="line">        list3.next = list1 if list1 else list2</span><br><span class="line">        return dummy.next</span><br></pre></td></tr></table></figure>
+
+<h4 id="24-两两交换链表中的节点"><a href="#24-两两交换链表中的节点" class="headerlink" title="24. 两两交换链表中的节点"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/swap-nodes-in-pairs/">24. 两两交换链表中的节点</a></h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">class Solution:</span><br><span class="line">    def swapPairs(self, head: ListNode) -&gt; ListNode:</span><br><span class="line">        dummyHead = ListNode(-1)</span><br><span class="line">        dummyHead.next = head</span><br><span class="line">        pre = dummyHead</span><br><span class="line">        while pre.next and pre.next.next:</span><br><span class="line">            n1 = pre.next</span><br><span class="line">            n2 = n1.next</span><br><span class="line">            next = n2.next</span><br><span class="line"></span><br><span class="line">            n1.next = next</span><br><span class="line">            n2.next = n1</span><br><span class="line">            pre.next = n2</span><br><span class="line">            </span><br><span class="line">            pre = n1</span><br><span class="line">        return dummyHead.next</span><br></pre></td></tr></table></figure>
+
+<h4 id="25-K-个一组翻转链表"><a href="#25-K-个一组翻转链表" class="headerlink" title="25. K 个一组翻转链表"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/reverse-nodes-in-k-group/">25. K 个一组翻转链表</a></h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">class Solution:</span><br><span class="line">    def reverselink(self, head: ListNode, tail: ListNode):</span><br><span class="line">        prev = tail.next</span><br><span class="line">        cur = head</span><br><span class="line">        while prev != tail:</span><br><span class="line">            suc = cur.next</span><br><span class="line">            cur.next = prev</span><br><span class="line">            prev = cur</span><br><span class="line">            cur = suc</span><br><span class="line">        return tail, head</span><br><span class="line"></span><br><span class="line">    def reverseKGroup(self, head: Optional[ListNode], k: int) -&gt; Optional[ListNode]:</span><br><span class="line">        dummyHead = ListNode(-1)</span><br><span class="line">        dummyHead.next = head</span><br><span class="line">        p = dummyHead</span><br><span class="line">        while head:</span><br><span class="line">            tail = p</span><br><span class="line">            for _ in range(k):</span><br><span class="line">                tail = tail.next</span><br><span class="line">                if not tail:</span><br><span class="line">                    return dummyHead.next</span><br><span class="line">            </span><br><span class="line">            next = tail.next</span><br><span class="line">            head, tail = self.reverselink(head, tail)</span><br><span class="line">            p.next = head</span><br><span class="line">            tail.next = next</span><br><span class="line">            p = tail</span><br><span class="line">            head = tail.next</span><br><span class="line"></span><br><span class="line">        return dummyHead.next</span><br></pre></td></tr></table></figure>
+
+<h4 id="147-对链表进行插入排序"><a href="#147-对链表进行插入排序" class="headerlink" title="147. 对链表进行插入排序"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/insertion-sort-list/">147. 对链表进行插入排序</a></h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">class Solution:</span><br><span class="line">    def insertionSortList(self, head: ListNode) -&gt; ListNode:</span><br><span class="line">        if not head:</span><br><span class="line">            return head</span><br><span class="line">        dummyHead = ListNode(-1)</span><br><span class="line">        dummyHead.next = head</span><br><span class="line">        ranknode = head</span><br><span class="line">        cur = head.next</span><br><span class="line">        while cur:</span><br><span class="line">            if ranknode.val &lt;= cur.val:</span><br><span class="line">                ranknode = ranknode.next</span><br><span class="line">            else:</span><br><span class="line">                prev = dummyHead</span><br><span class="line">                while prev.next.val &lt;= cur.val:</span><br><span class="line">                    prev = prev.next</span><br><span class="line">                ranknode.next = cur.next</span><br><span class="line">                cur.next = prev.next</span><br><span class="line">                prev.next = cur</span><br><span class="line">            cur = ranknode.next</span><br><span class="line">        </span><br><span class="line">        return dummyHead.next</span><br></pre></td></tr></table></figure>
+
+<h4 id="148-排序链表"><a href="#148-排序链表" class="headerlink" title="148. 排序链表"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/sort-list/">148. 排序链表</a></h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">class Solution:</span><br><span class="line">    def getMid(self, head: ListNode):</span><br><span class="line">        fast = head.next</span><br><span class="line">        slow = head</span><br><span class="line"></span><br><span class="line">        while fast.next and fast.next.next:</span><br><span class="line">            slow = slow.next</span><br><span class="line">            fast = fast.next.next</span><br><span class="line">        mid = slow.next</span><br><span class="line">        slow.next = None</span><br><span class="line">        return mid</span><br><span class="line">    </span><br><span class="line">    def merge(self, head1:ListNode, head2:ListNode):</span><br><span class="line">        dummyHead = ListNode(-1)</span><br><span class="line">        p = dummyHead</span><br><span class="line">        p1 = head1</span><br><span class="line">        p2 = head2</span><br><span class="line">        while p1 and p2:</span><br><span class="line">            if p1.val &lt;= p2.val:</span><br><span class="line">                p.next = p1</span><br><span class="line">                p1 = p1.next</span><br><span class="line">                p = p.next</span><br><span class="line">            else:</span><br><span class="line">                p.next = p2</span><br><span class="line">                p2 = p2.next</span><br><span class="line">                p = p.next</span><br><span class="line">        </span><br><span class="line">        p.next = p1 if p1 else p2</span><br><span class="line"></span><br><span class="line">        return dummyHead.next</span><br><span class="line"></span><br><span class="line">    def sortList(self, head: Optional[ListNode]) -&gt; Optional[ListNode]:</span><br><span class="line">        # O(nlogn): 堆排，快排，归并排序</span><br><span class="line">        # 空间复杂度O(1)：堆排</span><br><span class="line">        if not head or not head.next:</span><br><span class="line">            return head</span><br><span class="line">        mid = self.getMid(head)</span><br><span class="line"></span><br><span class="line">        mer1 = self.sortList(head)</span><br><span class="line">        mer2 = self.sortList(mid)</span><br><span class="line">        output = self.merge(mer1,mer2)</span><br><span class="line">        return output</span><br></pre></td></tr></table></figure>
+
+<h4 id="237-删除链表中的节点"><a href="#237-删除链表中的节点" class="headerlink" title="237. 删除链表中的节点"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/delete-node-in-a-linked-list/">237. 删除链表中的节点</a></h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">class Solution:</span><br><span class="line">    def deleteNode(self, node):</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        :type node: ListNode</span><br><span class="line">        :rtype: void Do not return anything, modify node in-place instead.</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        if not node:</span><br><span class="line">            return</span><br><span class="line">        if not node.next:</span><br><span class="line">            node = None</span><br><span class="line">        node.val = node.next.val</span><br><span class="line">        delnode = node.next</span><br><span class="line">        node.next = delnode.next</span><br></pre></td></tr></table></figure>
+
+<h4 id="19-删除链表的倒数第-N-个结点"><a href="#19-删除链表的倒数第-N-个结点" class="headerlink" title="19. 删除链表的倒数第 N 个结点"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/remove-nth-node-from-end-of-list/">19. 删除链表的倒数第 N 个结点</a></h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">class Solution:</span><br><span class="line">    def removeNthFromEnd(self, head: ListNode, n: int) -&gt; ListNode:</span><br><span class="line">        dummyHead = ListNode(-1)</span><br><span class="line">        dummyHead.next = head</span><br><span class="line">        p = dummyHead</span><br><span class="line">        q = dummyHead</span><br><span class="line">        for i in range(n+1):</span><br><span class="line">            q = q.next</span><br><span class="line">        while q:</span><br><span class="line">            p = p.next</span><br><span class="line">            q = q.next</span><br><span class="line">        p.next = p.next.next</span><br><span class="line">        return dummyHead.next</span><br></pre></td></tr></table></figure>
+
+<h4 id="61-旋转链表"><a href="#61-旋转链表" class="headerlink" title="61. 旋转链表"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/rotate-list/">61. 旋转链表</a></h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">class Solution:</span><br><span class="line">    def rotateRight(self, head: Optional[ListNode], k: int) -&gt; Optional[ListNode]:</span><br><span class="line">        if not head:</span><br><span class="line">            return head</span><br><span class="line">        cur = head</span><br><span class="line">        num = 1</span><br><span class="line">        while cur.next:</span><br><span class="line">            num += 1</span><br><span class="line">            cur = cur.next</span><br><span class="line">        tail = cur</span><br><span class="line">        tail.next = head</span><br><span class="line">        cur = head</span><br><span class="line">        num = (num-k)%num</span><br><span class="line">        for i in range(num):</span><br><span class="line">            cur = cur.next</span><br><span class="line">            tail = tail.next</span><br><span class="line">        tail.next = None</span><br><span class="line">        return cur</span><br></pre></td></tr></table></figure>
+
+<h4 id="143-重排链表"><a href="#143-重排链表" class="headerlink" title="143. 重排链表"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/reorder-list/">143. 重排链表</a></h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">class Solution:</span><br><span class="line">    def getMid(self, head: ListNode):</span><br><span class="line">        fast = head</span><br><span class="line">        slow = head</span><br><span class="line"></span><br><span class="line">        while fast.next and fast.next.next:</span><br><span class="line">            slow = slow.next</span><br><span class="line">            fast = fast.next.next</span><br><span class="line">        </span><br><span class="line">        return slow</span><br><span class="line">    </span><br><span class="line">    def reverselink(self, head:ListNode):</span><br><span class="line">        cur = head</span><br><span class="line">        pre = None</span><br><span class="line">        while cur != None:</span><br><span class="line">            next = cur.next</span><br><span class="line">            cur.next = pre</span><br><span class="line">            pre = cur</span><br><span class="line">            cur = next</span><br><span class="line">        </span><br><span class="line">        return pre</span><br><span class="line"></span><br><span class="line">    def reorderList(self, head: ListNode) -&gt; None:</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        Do not return anything, modify head in-place instead.</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        if not head:</span><br><span class="line">            return</span><br><span class="line">        mid = self.getMid(head)</span><br><span class="line">        l1 = head</span><br><span class="line">        l2 = mid.next</span><br><span class="line">        mid.next = None</span><br><span class="line"></span><br><span class="line">        l2 = self.reverselink(l2)</span><br><span class="line"></span><br><span class="line">        while l1 and l2:</span><br><span class="line">            temp1 = l1.next</span><br><span class="line">            temp2 = l2.next</span><br><span class="line">            l1.next = l2</span><br><span class="line">            l1 = temp1</span><br><span class="line">            l2.next = l1</span><br><span class="line">            l2 = temp2</span><br></pre></td></tr></table></figure>
+
+<h4 id="234-回文链表"><a href="#234-回文链表" class="headerlink" title="234. 回文链表"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/palindrome-linked-list/">234. 回文链表</a></h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">class Solution:</span><br><span class="line">    def getMid(self, head: ListNode):</span><br><span class="line">        fast = head</span><br><span class="line">        slow = head</span><br><span class="line"></span><br><span class="line">        while fast.next and fast.next.next:</span><br><span class="line">            slow = slow.next</span><br><span class="line">            fast = fast.next.next</span><br><span class="line">        </span><br><span class="line">        return slow</span><br><span class="line"></span><br><span class="line">    def reverselink(self, head:ListNode):</span><br><span class="line">        cur = head</span><br><span class="line">        pre = None</span><br><span class="line">        while cur != None:</span><br><span class="line">            next = cur.next</span><br><span class="line">            cur.next = pre</span><br><span class="line">            pre = cur</span><br><span class="line">            cur = next</span><br><span class="line">        </span><br><span class="line">        return pre</span><br><span class="line">    </span><br><span class="line">    def isPalindrome(self, head: ListNode) -&gt; bool:</span><br><span class="line">        if not head:</span><br><span class="line">            return True</span><br><span class="line">        mid = self.getMid(head)</span><br><span class="line">        l1 = head</span><br><span class="line">        l2 = mid.next</span><br><span class="line">        mid.next = None</span><br><span class="line">        l2 = self.reverselink(l2)</span><br><span class="line">        while l1 and l2:</span><br><span class="line">            if l1.val == l2.val:</span><br><span class="line">                l1 = l1.next</span><br><span class="line">                l2 = l2.next</span><br><span class="line">                continue</span><br><span class="line">            else:</span><br><span class="line">                return False</span><br><span class="line">        return True</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:  </strong>Eira
+  </li>
+  <li class="post-copyright-link">
+    <strong>Post link: </strong>
+    <a href="http://eirahxx.github.io/2021/12/22/algorithm3/" title="算法记录3——链表">http://eirahxx.github.io/2021/12/22/algorithm3/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E9%93%BE%E8%A1%A8/" rel="tag"># 链表</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/12/13/algorithm2/" rel="prev" title="算法记录2——查找表">
+      <i class="fa fa-chevron-left"></i> 算法记录2——查找表
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#206-%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8"><span class="nav-text">206. 反转链表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#92-%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8-II"><span class="nav-text">92. 反转链表 II</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#83-%E5%88%A0%E9%99%A4%E6%8E%92%E5%BA%8F%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%9A%84%E9%87%8D%E5%A4%8D%E5%85%83%E7%B4%A0"><span class="nav-text">83. 删除排序链表中的重复元素</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#86-%E5%88%86%E9%9A%94%E9%93%BE%E8%A1%A8"><span class="nav-text">86. 分隔链表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#328-%E5%A5%87%E5%81%B6%E9%93%BE%E8%A1%A8"><span class="nav-text">328. 奇偶链表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E4%B8%A4%E6%95%B0%E7%9B%B8%E5%8A%A0"><span class="nav-text">2. 两数相加</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#445-%E4%B8%A4%E6%95%B0%E7%9B%B8%E5%8A%A0-II"><span class="nav-text">445. 两数相加 II</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#203-%E7%A7%BB%E9%99%A4%E9%93%BE%E8%A1%A8%E5%85%83%E7%B4%A0"><span class="nav-text">203. 移除链表元素</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#82-%E5%88%A0%E9%99%A4%E6%8E%92%E5%BA%8F%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%9A%84%E9%87%8D%E5%A4%8D%E5%85%83%E7%B4%A0-II"><span class="nav-text">82. 删除排序链表中的重复元素 II</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#21-%E5%90%88%E5%B9%B6%E4%B8%A4%E4%B8%AA%E6%9C%89%E5%BA%8F%E9%93%BE%E8%A1%A8"><span class="nav-text">21. 合并两个有序链表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#24-%E4%B8%A4%E4%B8%A4%E4%BA%A4%E6%8D%A2%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%9A%84%E8%8A%82%E7%82%B9"><span class="nav-text">24. 两两交换链表中的节点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#25-K-%E4%B8%AA%E4%B8%80%E7%BB%84%E7%BF%BB%E8%BD%AC%E9%93%BE%E8%A1%A8"><span class="nav-text">25. K 个一组翻转链表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#147-%E5%AF%B9%E9%93%BE%E8%A1%A8%E8%BF%9B%E8%A1%8C%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F"><span class="nav-text">147. 对链表进行插入排序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#148-%E6%8E%92%E5%BA%8F%E9%93%BE%E8%A1%A8"><span class="nav-text">148. 排序链表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#237-%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%9A%84%E8%8A%82%E7%82%B9"><span class="nav-text">237. 删除链表中的节点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#19-%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E7%9A%84%E5%80%92%E6%95%B0%E7%AC%AC-N-%E4%B8%AA%E7%BB%93%E7%82%B9"><span class="nav-text">19. 删除链表的倒数第 N 个结点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#61-%E6%97%8B%E8%BD%AC%E9%93%BE%E8%A1%A8"><span class="nav-text">61. 旋转链表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#143-%E9%87%8D%E6%8E%92%E9%93%BE%E8%A1%A8"><span class="nav-text">143. 重排链表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#234-%E5%9B%9E%E6%96%87%E9%93%BE%E8%A1%A8"><span class="nav-text">234. 回文链表</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Eira"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">Eira</p>
+  <div class="site-description" itemprop="description">Yet here I stand</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/eirahxx" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;eirahxx" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:eirahu6@gmail.com" title="E-Mail → mailto:eirahu6@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Eira</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+  
+  <script type="text/javascript" src="/js/src/cursor/love.js"></script>
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : '0nB5w3DQTLCWygNxrb95EqkA-gzGzoHsz',
+      appKey     : '2oQkQlMQx806Nb9hHde8vpqW',
+      placeholder: "Just go go",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>
