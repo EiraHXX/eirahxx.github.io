@@ -28,7 +28,7 @@
 <meta property="og:description" content="这里记录一下刷剑指offer的过程。 力扣：https:&#x2F;&#x2F;leetcode-cn.com&#x2F;problem-list&#x2F;xb9nqhhg&#x2F; 牛客：https:&#x2F;&#x2F;www.nowcoder.com&#x2F;ta&#x2F;coding-interviews-all">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-02-15T03:18:16.000Z">
-<meta property="article:modified_time" content="2022-02-15T13:32:54.701Z">
+<meta property="article:modified_time" content="2022-02-16T01:17:11.654Z">
 <meta property="article:author" content="Eira">
 <meta name="twitter:card" content="summary">
 
@@ -187,10 +187,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2022-02-15 11:18:16 / Modified: 21:32:54" itemprop="dateCreated datePublished" datetime="2022-02-15T11:18:16+08:00">2022-02-15</time>
+              <time title="Created: 2022-02-15 11:18:16" itemprop="dateCreated datePublished" datetime="2022-02-15T11:18:16+08:00">2022-02-15</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-02-16 09:17:11" itemprop="dateModified" datetime="2022-02-16T09:17:11+08:00">2022-02-16</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -246,7 +252,7 @@
 <p>这样有一个问题就是，在函数调用的时候，python到底是传值还是传引用。先说答案，既不是传值也不是传引用，是传对象（call by object）。对象是不会变的，变的是对象的名字。对于python而言，一切皆对象。</p>
 <p>python中有可变类型和不可变类型的概念。可变类型：list、dict；不可变类型：int、float、string、tuple。</p>
 <p>在函数内部修改形参，不可变类型的实参没有变，可变类型的实参被修改。</p>
-<p>那么我们可以讲上述代码中的可变类型变量换成不可变类型变量，这样在代码执行过程中就降低了内存开销，也就是函数的参数传递的时候传递列表key的而不是传递列表本身。</p>
+<p>那么我们可以将上述代码中的可变类型变量换成不可变类型变量，这样在代码执行过程中就降低了内存开销，也就是函数的参数传递的时候传递列表key的而不是传递列表本身。</p>
 <p>由于每次找root节点在inorder中的顺序的时候，都要遍历一次inorder，这样时间复杂度很高，如果一开始就遍历一遍inorder讲顺序记录下来，就讲时间复杂度降低了。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">class Solution:</span><br><span class="line">    def buildTree(self, preorder: List[int], inorder: List[int]) -&gt; TreeNode:</span><br><span class="line">        def subtree(preorder_l, preorder_r, inorder_l, inorder_r):</span><br><span class="line">            if preorder_l &gt; preorder_r:</span><br><span class="line">                return None</span><br><span class="line">            preorder_root = preorder_l</span><br><span class="line">            inorder_root = index[preorder[preorder_root]]</span><br><span class="line"></span><br><span class="line">            root = TreeNode(preorder[preorder_root])</span><br><span class="line">            size = inorder_root - inorder_l</span><br><span class="line">            root.left = subtree(preorder_l+1, preorder_l+size, inorder_l, inorder_root-1)</span><br><span class="line">            root.right = subtree(preorder_l+1+size, preorder_r, inorder_root+1, inorder_r)</span><br><span class="line">            return root</span><br><span class="line">        n = len(preorder)     </span><br><span class="line">        index = &#123;element: i for i, element in enumerate(inorder)&#125; </span><br><span class="line">        return subtree(0, n-1, 0, n-1)</span><br></pre></td></tr></table></figure>
 
